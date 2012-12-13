@@ -1,0 +1,87 @@
+@import "reset";
+.wrap {
+  max-width: 665px;
+  min-width: 225px;
+  overflow: hidden;
+}
+
+.title {
+  color: #999;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 22px;
+  padding-left: 10px;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.list-ctn {
+    img {
+      display: inline-block;
+    }
+
+    li {
+        font-size: 0;
+        margin: 10px 0 0 10px;
+        width: 210px;
+
+        .row1,
+        .row2,
+        .span1,
+        .span2 {
+          display: inline-block;
+          background-color: #fff;
+          box-shadow: 0 1px 2px #d6d6d6;
+          padding: 5px;
+
+          &:hover {
+            box-shadow: 0 1px 3px #aaa;
+            cursor: pointer;
+          }
+        }
+
+        .row1 {
+          height: 90px;
+
+          img {
+            height: 90px;
+          }
+        }
+
+        .row2 {
+          height: 200px;
+
+          img {
+            height: 200px;
+          }
+        }
+
+        .span1 {
+          width: 90px;
+
+          + .span1 {
+            margin-left: 10px;
+          }
+        }
+
+        .span2 {
+          width: 200px;
+
+          img {
+            width: 200px;
+          }
+        }
+    }
+}
+
+.masonry,
+.masonry .masonry-brick {
+  -webkit-transition-duration: .7s;
+}
+
+.masonry {
+  -webkit-transition-property: height, width;
+}
+
+.masonry .masonry-brick {
+  -webkit-transition-property: left, right, top;
+}
