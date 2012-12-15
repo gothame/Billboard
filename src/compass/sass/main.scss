@@ -1,4 +1,6 @@
 @import "reset";
+@import "sprite/*.png";
+
 .wrap {
   max-width: 665px;
   min-width: 225px;
@@ -14,6 +16,19 @@
   text-shadow: 0 1px 0 #fff;
 }
 
+@mixin icon {
+  position: relative;
+
+  &::after {
+    display: block;
+    content: '';
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    height: 13px;
+  }
+}
+
 .list-ctn {
     img {
       display: inline-block;
@@ -23,6 +38,46 @@
         font-size: 0;
         margin: 10px 0 0 10px;
         width: 210px;
+
+        @each $icon in icon-ads, icon-collection, icon-award, icon-exclusive, icon-top {
+            .#{$icon} {
+              @include icon;
+
+              &:after {
+                @include sprite-sprite(#{$icon});
+              }
+            }
+        }
+
+        .icon-ads {
+          &::after {
+            width: 38px;
+          }
+        }
+
+        .icon-collection {
+          &::after {
+            width: 38px;
+          }
+        }
+
+        .icon-award {
+          &::after {
+            width: 49px;
+          }
+        }
+
+        .icon-exclusive {
+          &::after {
+            width: 38px;
+          }
+        }
+
+        .icon-top {
+          &::after {
+            width: 58px;
+          }
+        }
 
         .row1,
         .row2,
