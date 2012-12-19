@@ -1,6 +1,6 @@
 ( {
 	appDir : "../src",
-	baseUrl : "javascripts",
+	baseUrl : "billboard/javascripts",
 	dir : "../build/release",
 	optimize : "uglify",
 	uglify : {
