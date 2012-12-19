@@ -2,6 +2,30 @@
 (function (window, undefined) {
     var document = window.document;
 
+    var log = function (data) {
+        var logSwitch = true;
+        if (logSwitch) {
+            data = data || {};
+
+            var url = 'wdj://window/log.json';
+            var datas = [];
+            var d;
+            for (d in data) {
+                if (data.hasOwnProperty(d)) {
+                    datas.push(d + '=' + window.encodeURIComponent(data[d]));
+                }
+            }
+            url += '?' + datas.join('&');
+
+            window.OneRingRequest('get', url, '', function (resp) {
+                resp = JSON.parse(resp);
+                if (resp.state_code === 200) {
+                    console.log('Log: ', url);
+                }
+            });
+        }
+    };
+
     var requestAsync = function (options) {
         var deferred = $.Deferred();
         var url = options.url;
@@ -87,5 +111,11 @@
             download(url, name, icon);
             break;
         }
+
+        log({
+            'event' : 'ui.click.welcome.billborad.item',
+            'action' : type,
+            'content' : extensionId || name
+        });
     });
 }(this));
