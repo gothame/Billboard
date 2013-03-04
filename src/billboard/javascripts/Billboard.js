@@ -102,7 +102,7 @@
         var packageName = $this.attr('data-package') || '';
         switch (type) {
         case 'extension':
-            openExtension(extensionId);
+            openExtension(extensionId, url);
             break;
         case 'wandoujia':
             openExtension(18, url);
