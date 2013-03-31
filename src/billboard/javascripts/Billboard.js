@@ -1,7 +1,5 @@
 /*global $*/
-(function (window, undefined) {
-    var document = window.document;
-
+(function (window, document, undefined) {
     var log = function (data) {
         var logSwitch = true;
         if (logSwitch) {
@@ -56,12 +54,12 @@
     });
 
     $(window).on('resize', function () {
-        $('.wrap').width(Math.floor($(this).width() / 220) * 220 + 2);
-        $('.wrap').height(Math.floor($(this).height() / 220) * 220 + 25);
+        $('.wrap').width(Math.floor($(this).width() / 220) * 220 + 2)
+                    .height(Math.floor($(this).height() / 220) * 220 + 25);
     });
 
-    $('.wrap').width(Math.floor($(this).width() / 220) * 220 + 2);
-    $('.wrap').height(Math.floor($(this).height() / 220) * 220 + 25);
+    $('.wrap').width(Math.floor($(this).width() / 220) * 220 + 2)
+                .height(Math.floor($(this).height() / 220) * 220 + 25);
 
     var openExtension = function (extensionId, url) {
         requestAsync({
@@ -110,6 +108,31 @@
         case 'download':
             download(url, name, icon);
             break;
+        case 'foolsday':
+            var ua = window.navigator.userAgent.split(' ');
+            var version = ua[ua.length - 1];
+            if (version.localeCompare('2.52') > 0) {
+                requestAsync({
+                    url : 'wdj://window/publish.json',
+                    data : {
+                        channel : 'web.navigate',
+                        value : JSON.stringify({
+                            type : 'wash'
+                        })
+                    }
+                });
+            } else {
+                $('<a>').attr({
+                    href : 'http://www.wandoujia.com/xibaibai/air?utm_source=windows&utm_medium=banner&utm_campaign=2013Fools',
+                    target : '_default'
+                })[0].click();
+            }
+
+            log({
+                'event' : 'ui.click.welcome_billboard_xibaibai',
+                'version' : version
+            });
+            break;
         }
 
         log({
@@ -118,4 +141,4 @@
             'content' : extensionId || name
         });
     });
-}(this));
+}(this, this.document));
